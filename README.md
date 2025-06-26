@@ -46,15 +46,15 @@ A secure and feature-rich student mentoring management system with role-based da
 ## Demo Login Credentials
 
 👨‍💼 Admin / Super Admin
-Email: mukherjeesouvik2043@gmail.com
+Email: mukherjeesouvik2043@gmail.com, 
 Password: Souvik@#123
 
 👨‍🏫 Mentor
-Email: souvikmentor12@gmail.com
+Email: souvikmentor12@gmail.com, 
 Password: Souvik@#123
 
 👨‍🎓 Student
-Email: Any added email of student
+Email: Any added email of student, 
 Password: Student@#123 (default)
 
 
