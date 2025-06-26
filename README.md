@@ -15,6 +15,7 @@ A robust and secure web application designed for academic institutions to manage
   - Assign students to mentors with real-time filters.
   - Personalized dashboard for all academic operations.
   - Bulk operations: delete, print, filter student records.
+  - Add and manage different type of user and reset password.
 
 - **Mentor**
   - Personalized dashboard with access to assigned students.
@@ -42,6 +43,19 @@ A robust and secure web application designed for academic institutions to manage
 
 ---
 
+## Demo Login Credentials
+
+👨‍💼 Admin / Super Admin
+Email: mukherjeesouvik2043@gmail.com
+Password: Souvik@#123
+
+👨‍🏫 Mentor
+Email: souvikmentor12@gmail.com
+Password: Souvik@#123
+
+👨‍🎓 Student
+Email: Any added email of student
+Password: Student@#123 (default)
 
 
 ---
