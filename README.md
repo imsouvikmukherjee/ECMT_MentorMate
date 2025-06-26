@@ -23,6 +23,7 @@ A secure and feature-rich student mentoring management system with role-based da
   - Approve/reject student profile change requests with highlights of modified fields and remarks.
   - Mentoring Info section: live filtering, detailed views, status updates with remarks.
   - Bulk delete and print/download mentoring reports.
+  - Change Request and mentoring info notification system in sidebar, based on the pending data.
 
 - **Student**
   - Personalized dashboard with profile and academic details.
