@@ -1,0 +1,396 @@
+@extends('admin.layout.main')
+
+@Section('main-container')
+
+        <!--start page wrapper -->
+        <div class="page-wrapper">
+            <div class="page-content">
+
+                <!-- <div class="breadcrumb-title pe-3">Semister Subjects</div> -->
+                <!--breadcrumb-->
+                <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                    <div class="breadcrumb-title pe-3">Add Subject</div>
+                    <div class="ps-3">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0 p-0">
+                                <li class="breadcrumb-item text-primary"><a href="{{route('admin_dashboard')}}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <!-- <li class="breadcrumb-item " aria-current="page" style="color: #00a8ff; text-decoration: none;"><a href="subjects.html">Semister Subjects</a></li> -->
+
+                                <li class="breadcrumb-item text-primary"><a href="{{route('subject')}}">Subjects</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">Add Subject</li>
+
+                            </ol>
+                        </nav>
+                    </div>
+
+                </div>
+                <!--end breadcrumb-->
+
+                <div class="row mt-4">
+                    <!-- <div class="col-12 col-lg-12">
+                        <div class="card radius-10">
+                            <div class="card-body">
+
+
+                            </div>
+                        </div>
+                    </div> -->
+
+
+                    <div class="card border-top border-0 border-4 border-primary">
+                        <div class="card-body">
+                            <div class="border p-4 rounded">
+                                {{-- <div class="card-title d-flex align-items-center">
+
+                                    <h5 class="mb-0 text-primary">Add Subjects</h5>
+                                </div>
+                                <hr/> --}}
+
+                                @if ($errors->any())
+                                <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li class="text-white">{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            @endif
+
+                                <form action="{{route('add_subject_store')}}" method="post">
+                                    @csrf
+                                    <div class="row mb-3">
+                                        <label for="department" class="col-sm-3 col-form-label">Session<span class="text-danger">*</span></label>
+                                        <div class="col-sm-9">
+                                            <select class="form-select mb-3" aria-label="Department select" name="session" id="session">
+                                                <option selected disabled value="">Choose Session</option>
+                                                @foreach ($sessions as $item)
+
+                                               <option value="{{$item->id}}" {{old('session') == $item->id? 'selected':''}}>{{$item->session}}</option>
+                                               @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="department" class="col-sm-3 col-form-label">Department<span class="text-danger">*</span></label>
+                                        <div class="col-sm-9">
+                                            <select class="form-select mb-3"  name="department" id="department" >
+                                                <option selected disabled value="">Choose Department</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="department" class="col-sm-3 col-form-label">Semester<span class="text-danger">*</span></label>
+                                        <div class="col-sm-9">
+                                            <select class="form-select mb-3"  name="semester" id="semester" >
+                                                <option selected disabled value="">Choose Semester</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="name" class="col-sm-3 col-form-label">Subject Name<span class="text-danger">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="name" name="subject_name" value="{{old('subject_name')}}" oninput="this.value = this.value.toUpperCase();"  placeholder="Enter subject name" >
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="code" class="col-sm-3 col-form-label">Subject Code<span class="text-danger">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="code" name="subject_code" value="{{old('subject_code')}}"  placeholder="e.g. CS101" oninput="this.value = this.value.toUpperCase();" >
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row mb-3">
+                                        <label for="subject_type" class="col-sm-3 col-form-label">Subject Type<span class="text-danger">*</span></label>
+                                        <div class="col-sm-9">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="subject_type" id="type_theory" value="theory" {{old('subject_type') == 'theory' ? 'checked' : ''}} checked>
+                                                <label class="form-check-label" for="type_theory">Theory (CA1-CA4)</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="subject_type" id="type_practical" value="practical" {{old('subject_type') == 'practical' ? 'checked' : ''}}>
+                                                <label class="form-check-label" for="type_practical">Practical (PCA1-PCA2)</label>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="row mb-3">
+                                        <label for="credits" class="col-sm-3 col-form-label">Full Marks<span class="text-danger">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input type="number" class="form-control" id="credits" name="marks" value="{{old('marks')}}" min="1" max="100" placeholder="Enter full marks">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <label class="col-sm-3 col-form-label"></label>
+                                        <div class="col-sm-9">
+                                            <button type="submit" class="btn btn-primary px-4 mt-4 text-white">Add Subject</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--end page wrapper -->
+                    <!--start overlay-->
+                    <div class="overlay toggle-icon"></div>
+                    <!--end overlay-->
+                    <!--Start Back To Top Button--><a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
+                    <!--End Back To Top Button-->
+                     <footer class="page-footer">
+                        <p class="mb-0 text-muted">Developed by <a href="https://www.linkedin.com/in/souvikmukherjee98?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">Souvik Mukherjee</a>, <a href="">Surya Narayan Paul</a>, <a href="">Swapnil Dewanjee</a>, and <a href="">Arit Biswas</a> – Department: BCA, Batch: 2022–2025</p>
+                    </footer>
+                </div>
+                <!--end wrapper-->
+                <!--start switcher-->
+                <!-- <div class="switcher-wrapper">
+                    <div class="switcher-btn"> <i class='bx bx-cog bx-spin'></i>
+                    </div>
+                    <div class="switcher-body">
+                        <div class="d-flex align-items-center">
+                            <h5 class="mb-0 text-uppercase">Theme Customizer</h5>
+                            <button type="button" class="btn-close ms-auto close-switcher" aria-label="Close"></button>
+                        </div>
+                        <hr/>
+                        <h6 class="mb-0">Theme Styles</h6>
+                        <hr/>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="lightmode" checked>
+                                <label class="form-check-label" for="lightmode">Light</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="darkmode">
+                                <label class="form-check-label" for="darkmode">Dark</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="semidark">
+                                <label class="form-check-label" for="semidark">Semi Dark</label>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="minimaltheme" name="flexRadioDefault">
+                            <label class="form-check-label" for="minimaltheme">Minimal Theme</label>
+                        </div>
+                        <hr/>
+                        <h6 class="mb-0">Header Colors</h6>
+                        <hr/>
+                        <div class="header-colors-indigators">
+                            <div class="row row-cols-auto g-3">
+                                <div class="col">
+                                    <div class="indigator headercolor1" id="headercolor1"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="indigator headercolor2" id="headercolor2"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="indigator headercolor3" id="headercolor3"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="indigator headercolor4" id="headercolor4"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="indigator headercolor5" id="headercolor5"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="indigator headercolor6" id="headercolor6"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="indigator headercolor7" id="headercolor7"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="indigator headercolor8" id="headercolor8"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <h6 class="mb-0">Sidebar Colors</h6>
+                        <hr/>
+                        <div class="header-colors-indigators">
+                            <div class="row row-cols-auto g-3">
+                                <div class="col">
+                                    <div class="indigator sidebarcolor1" id="sidebarcolor1"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="indigator sidebarcolor2" id="sidebarcolor2"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="indigator sidebarcolor3" id="sidebarcolor3"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="indigator sidebarcolor4" id="sidebarcolor4"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="indigator sidebarcolor5" id="sidebarcolor5"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="indigator sidebarcolor6" id="sidebarcolor6"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="indigator sidebarcolor7" id="sidebarcolor7"></div>
+                                </div>
+                                <div class="col">
+                                    <div class="indigator sidebarcolor8" id="sidebarcolor8"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <!--end switcher-->
+                <!-- Bootstrap JS -->
+            </div>
+        </div>
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+{{-- <script>
+    $('#session').on('change', function () {
+        var sessionId = $(this).val();
+        $('#department').html('<option value="">Loading...</option>');
+        $('#semester').html('<option value="">Choose Semester</option>');
+
+        $.ajax({
+            url: '{{ route("getDepartments") }}',
+            type: 'GET',
+            data: { session_id: sessionId },
+            success: function (data) {
+                let options = '<option selected disabled value="">Choose Department</option>';
+                data.forEach(function (dept) {
+                    options += `<option value="${dept.id}">${dept.department_name}</option>`;
+                });
+                $('#department').html(options);
+            }
+        });
+    });
+
+    $('#department').on('change', function () {
+        var departmentId = $(this).val();
+        var sessionId = $('#session').val();
+        $('#semester').html('<option value="">Loading...</option>');
+
+        $.ajax({
+            url: '{{ route("getSemesters") }}',
+            type: 'GET',
+            data: {
+                department_id: departmentId,
+                session_id: sessionId
+            },
+            success: function (data) {
+                let options = '<option selected disabled value="">Choose Semester</option>';
+                data.forEach(function (sem) {
+                    options += `<option value="${sem.id}">${sem.semister_name} (${sem.semister_type})</option>`;
+                });
+                $('#semester').html(options);
+            }
+        });
+    });
+</script> --}}
+
+
+<script>
+    // On Session change - fetch Departments
+    $('#session').on('change', function () {
+        var sessionId = $(this).val();
+        $('#department').html('<option value="">Loading...</option>');
+        $('#semester').html('<option value="">Choose Semester</option>');
+
+        $.ajax({
+            url: '{{ route("getDepartments") }}',
+            type: 'GET',
+            data: { session_id: sessionId },
+            success: function (data) {
+                let oldDepartment = "{{ old('department') }}";
+                let options = '<option selected disabled value="">Choose Department</option>';
+
+                data.forEach(function (dept) {
+                    let selected = (dept.id == oldDepartment) ? 'selected' : '';
+                    options += `<option value="${dept.id}" ${selected}>${dept.department_name}</option>`;
+                });
+
+                $('#department').html(options).trigger('change'); // trigger next change to load semester
+            }
+        });
+    });
+
+    // On Department change - fetch Semesters
+    $('#department').on('change', function () {
+        var departmentId = $(this).val();
+        var sessionId = $('#session').val();
+        $('#semester').html('<option value="">Loading...</option>');
+
+        $.ajax({
+            url: '{{ route("getSemesters") }}',
+            type: 'GET',
+            data: {
+                department_id: departmentId,
+                session_id: sessionId
+            },
+            success: function (data) {
+                let oldSemester = "{{ old('semester') }}";
+                let options = '<option selected disabled value="">Choose Semester</option>';
+
+                data.forEach(function (sem) {
+                    let selected = (sem.id == oldSemester) ? 'selected' : '';
+                    options += `<option value="${sem.id}" ${selected}>${sem.semister_name} (${sem.semister_type})</option>`;
+                });
+
+                $('#semester').html(options);
+            }
+        });
+    });
+
+    // If old session value exists, trigger department load
+    $(document).ready(function () {
+        let oldSession = "{{ old('session') }}";
+        if (oldSession) {
+            $('#session').val(oldSession).trigger('change');
+        }
+    });
+</script>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Show/hide other description based on selection
+        const typeRadios = document.querySelectorAll('input[name="type"]');
+        const otherContainer = document.getElementById('other_description_container');
+        const otherDescription = document.getElementById('other_description');
+
+        function toggleOtherDescription() {
+            const selectedType = document.querySelector('input[name="type"]:checked').value;
+            otherContainer.style.display = selectedType === 'other' ? 'block' : 'none';
+            otherDescription.required = selectedType === 'other';
+        }
+
+        // Initial check
+        toggleOtherDescription();
+
+        // Add event listeners to all radio buttons
+        typeRadios.forEach(radio => {
+            radio.addEventListener('change', toggleOtherDescription);
+        });
+    });
+</script>
+@endsection
