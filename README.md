@@ -1,8 +1,8 @@
-A secure and feature-rich student mentoring management system with role-based dashboards for students, mentors, and administrators. Includes academic management, student-mentor assignments, live filters, profile change workflows, and report generation.
+
 
 # 🎓 Student Mentoring Management System (MentorMate)
 
-A robust and secure web application designed for academic institutions to manage student mentoring workflows with role-based access for **Students**, **Mentors**, **Admins**, and **Super Admins**.
+A secure and feature-rich student mentoring management system with role-based dashboards for students, mentors, and administrators. Includes academic management, student-mentor assignments, live filters, profile change workflows, and report generation.
 
 ---
 
