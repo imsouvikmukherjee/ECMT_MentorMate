@@ -82,3 +82,12 @@ php artisan db:seed # if you have seeders
 
 # Start the server
 php artisan serve
+
+
+
+
+Developer
+Souvik Mukherjee
+Web Application Developer
+📧 mukherjeesouvik2043@gmail.com
+📱 +91 9064293959
