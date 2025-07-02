@@ -42,13 +42,9 @@ A secure and feature-rich student mentoring management system with role-based da
 - **Database**: MySQL
 - **Other Tools**: Laravel Excel, Breeze, DataTables
 
-Live Demo - mentormate.rajdhanimarketmatka.in
 
-## Live Website
 
-You can visit the live site here: [mentormate.rajdhanimarketmatka.in)
-
-## Live Demo - https://microtechniqueit.com/
+## Live Demo - https://mentormate.rajdhanimarketmatka.in/
 ---
 
 
